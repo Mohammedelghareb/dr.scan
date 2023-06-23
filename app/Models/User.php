@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
-
+use App\Models\Diagnosis;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -29,11 +29,18 @@ class User extends Authenticatable
         'disease',
     ];
 
-    public function user()
+   /* public function user()
+    {
+        return $this->hasMany(Photo::class);
+    }*/
+    public function diagnosis()
+    {
+        return $this->hasMany(Diagnosis::class);
+    }
+    public function photo()
     {
         return $this->hasMany(Photo::class);
     }
-
     /**
      * The attributes that should be hidden for serialization.
      *
